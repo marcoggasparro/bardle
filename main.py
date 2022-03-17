@@ -38,6 +38,12 @@ bardletest = picknewbardle()
 
 wsgi_app = app.wsgi_app
 
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(os.path.join(app.root_path, 'static'),
+                               'favicon.ico', mimetype='image/favicon.png')
+
+
 @app.route("/",methods=['GET', 'POST'])
 def welcome():
     global bardletest, turn, guess_key, wins, losses, streak, bardle_tracker
